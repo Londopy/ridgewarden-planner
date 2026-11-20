@@ -23,16 +23,16 @@ jobs:
     steps:
       # this app builds against the core's shared client crate and Link Doctor as sibling
       # checkouts (Cargo.toml uses path = "../ridgewarden/..."), so lay the repos out side by side
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: ridgewarden-planner
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: Londopy/ridgewarden
           path: ridgewarden
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: Londopy/ridgewarden-linkdoctor
           path: ridgewarden-linkdoctor
@@ -68,16 +68,16 @@ jobs:
     steps:
       # this app builds against the core's shared client crate and Link Doctor as sibling
       # checkouts (Cargo.toml uses path = "../ridgewarden/..."), so lay the repos out side by side
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           path: ridgewarden-planner
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: Londopy/ridgewarden
           path: ridgewarden
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           repository: Londopy/ridgewarden-linkdoctor
           path: ridgewarden-linkdoctor
