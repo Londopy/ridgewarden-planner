@@ -1,0 +1,29 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "configure" ]; then
+    if ! id ridgewarden-planner >/dev/null 2>&1; then
+        adduser --system --group --home /var/lib/ridgewarden-planner --no-create-home ridgewarden-planner
+    fi
+    adduser ridgewarden-planner ridgewarden >/dev/null
+    install -d -m 750 -o ridgewarden-planner -g ridgewarden-planner /var/lib/ridgewarden-planner /var/lib/ridgewarden-planner/terrain
+    # an upgrade from when apps ran as the core's user leaves files it owned
+    chown -R ridgewarden-planner:ridgewarden-planner /var/lib/ridgewarden-planner
+    # terrain tiles pass through the core's import and export folders
+    install -d -m 2770 -o ridgewarden -g ridgewarden /var/lib/ridgewarden/imports /var/lib/ridgewarden/exports
+    if [ ! -f /etc/ridgewarden/planner.toml ]; then
+        /usr/bin/ridgewarden-planner --config /etc/ridgewarden/planner.toml init
+    fi
+    # its webhook URLs and passphrases are for this app only, not the other apps
+    # in the ridgewarden group
+    chown root:ridgewarden-planner /etc/ridgewarden/planner.toml
+    chmod 640 /etc/ridgewarden/planner.toml
+    if [ -d /run/systemd/system ]; then
+        systemctl daemon-reload
+        # start once the core is set up; until then there's nothing to follow
+        if [ -f /etc/ridgewarden/ridgewarden.toml ]; then
+            systemctl enable ridgewarden-planner >/dev/null 2>&1 || true
+            systemctl restart ridgewarden-planner || true
+        fi
+    fi
+fi
