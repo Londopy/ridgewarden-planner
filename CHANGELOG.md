@@ -1,12 +1,10 @@
 # Changelog
 
-All notable changes to ridgewarden-planner are listed here. The format follows
-[Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow
-[Semantic Versioning](https://semver.org/spec/v2.0.0.html). The section for a version is
-what appears on its GitHub release page. Validated in CI by
-[patchnotes](https://github.com/Londopy/patchnotes).
+All notable changes to ridgewarden-planner are listed here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and versions follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html). The section for a version is what appears on its GitHub release page. Validated in CI by [patchnotes](https://github.com/Londopy/patchnotes).
 
 ## [Unreleased]
+
+## [0.1.0] - 2026-11-20
 
 ### Added
 
@@ -31,4 +29,5 @@ what appears on its GitHub release page. Validated in CI by
 - The split case: a failure that leaves no clear largest part says the mesh splits.
 - `planner.prediction` events for each measured RF link, corrected by the other links only, so Link Doctor can show predicted against measured; republished when a prediction moves by more than 1 dB, or daily. Without the core's token the planner stays read-only and says so.
 
-[Unreleased]: https://github.com/Londopy/ridgewarden-planner/commits/main
+[Unreleased]: https://github.com/Londopy/ridgewarden-planner/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/Londopy/ridgewarden-planner/releases/tag/v0.1.0
